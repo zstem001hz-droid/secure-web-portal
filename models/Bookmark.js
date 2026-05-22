@@ -28,3 +28,7 @@ const bookmarkSchema = new Schema({
     required: true,
   },
 });
+
+const Bookmark = model("Bookmark", bookmarkSchema);
+
+module.exports = Bookmark;
