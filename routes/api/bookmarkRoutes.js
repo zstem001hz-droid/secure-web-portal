@@ -87,3 +87,30 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// DELETE /api/bookmarks/:id - Delete a bookmark
+router.delete("/:id", async (req, res) => {
+  try {
+    // Find bookmark by ID
+    const bookmark = await Bookmark.findById(req.params.id);
+
+    if (!bookmark) {
+      return res
+        .status(404)
+        .json({ message: "No bookmark found with this id!" });
+    }
+
+    // Check ownership before deleting
+    if (bookmark.user.toString() !== req.user._id.toString()) {
+      return res
+        .status(403)
+        .json({ message: "User is not authorized to delete this bookmark." });
+    }
+
+    // Delete the bookmark
+    await Bookmark.findByIdAndDelete(req.params.id);
+    res.json({ message: "Bookmark deleted!" });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
