@@ -25,7 +25,10 @@ passport.use(
         const newUser = await User.create({
           githubId: profile.id,
           username: profile.username,
-          email: profile.emails[0].value,
+          email:
+            profile.emails && profile.emails[0]
+              ? profile.emails[0].value
+              : `${profile.username}@github.com`,
         });
 
         return done(null, newUser);

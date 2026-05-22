@@ -33,6 +33,8 @@ accessible only to their owner.
 
 ## Security Features
 
+- GitHub OAuth handles private email accounts — falls back to a generated placeholder email when GitHub profile email is unavailable
+
 ## Error Responses
 
 ## Usage Examples
