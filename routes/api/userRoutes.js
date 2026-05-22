@@ -35,7 +35,6 @@ router.post("/login", async (req, res) => {
     // Sign and return token
     const token = signToken(user);
     res.json({ token, user });
-
   } catch (err) {
     res.status(400).json(err);
   }
