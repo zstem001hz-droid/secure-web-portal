@@ -55,3 +55,35 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// PUT /api/bookmarks/:id - Update a bookmark
+router.put("/:id", async (req, res) => {
+  try {
+    // Find bookmark by ID
+    const bookmark = await Bookmark.findById(req.params.id);
+
+    if (!bookmark) {
+      return res
+        .status(404)
+        .json({ message: "No bookmark found with this id!" });
+    }
+
+    // Check ownership before updating
+    if (bookmark.user.toString() !== req.user._id.toString()) {
+      return res
+        .status(403)
+        .json({ message: "User is not authorized to update this bookmark." });
+    }
+
+    // Update the bookmark
+    const updatedBookmark = await Bookmark.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true },
+    );
+
+    res.json(updatedBookmark);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
