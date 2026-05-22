@@ -6,9 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Zac White",
   "license": "ISC",
-  "description": "",
+  "description": "Building a Secure Web Portal",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "dotenv": "^17.4.2",

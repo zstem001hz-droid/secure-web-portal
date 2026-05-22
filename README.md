@@ -8,9 +8,9 @@
 ![Passport](https://img.shields.io/badge/OAuth-Passport.js-blue)
 ![GitHub OAuth](https://img.shields.io/badge/Provider-GitHub-black)
 
-A secure Express API implementing local authentication with bcrypt and JWT, 
-and third-party authentication via GitHub OAuth 2.0. Users can register, 
-log in through both methods, and manage a private collection of bookmarks 
+A secure Express API implementing local authentication with bcrypt and JWT,
+and third-party authentication via GitHub OAuth 2.0. Users can register,
+log in through both methods, and manage a private collection of bookmarks
 accessible only to their owner.
 
 ## Tech Stack
@@ -46,6 +46,7 @@ accessible only to their owner.
 - [GitHub Docs: Authorizing OAuth Apps](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps)
 - [Mongoose pre() Middleware](https://mongoosejs.com/docs/middleware.html#pre)
 - [bcrypt on npm](https://www.npmjs.com/package/bcrypt)
+- [jsonwebtoken on npm](https://www.npmjs.com/package/jsonwebtoken)
 
 ## Reflection
 
