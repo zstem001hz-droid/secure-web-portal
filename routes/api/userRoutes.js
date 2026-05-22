@@ -39,3 +39,25 @@ router.post("/login", async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+// GET /api/users/auth/github - Initiate GitHub OAuth flow
+router.get(
+  "/auth/github",
+  passport.authenticate("github", { scope: ["user:email"] }),
+);
+
+// GET /api/users/auth/github/callback - GitHub OAuth callback
+router.get(
+  "/auth/github/callback",
+  passport.authenticate("github", {
+    failureRedirect: "/login",
+    session: false,
+  }),
+  (req, res) => {
+    // Sign JWT for the authenticated GitHub user
+    const token = signToken(req.user);
+    res.json({ token, user: req.user });
+  },
+);
+
+module.exports = router;
