@@ -19,3 +19,14 @@ router.post("/", async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+// GET /api/bookmarks - Get all bookmarks for logged-in user
+router.get("/", async (req, res) => {
+  try {
+    // Only return bookmarks owned by the logged-in user
+    const bookmarks = await Bookmark.find({ user: req.user._id });
+    res.json(bookmarks);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
