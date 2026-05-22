@@ -15,8 +15,8 @@ app.use(express.json());
 app.use(passport.initialize());
 
 // Routes
-// const routes = require("./routes");
-// app.use(routes);
+const routes = require("./routes");
+app.use(routes);
 
 // Start server after database connection opens
 db.once("open", () => {
