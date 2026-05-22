@@ -30,3 +30,28 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// GET /api/bookmarks/:id - Get a single bookmark by ID
+router.get("/:id", async (req, res) => {
+  try {
+    // Find bookmark by ID
+    const bookmark = await Bookmark.findById(req.params.id);
+
+    if (!bookmark) {
+      return res
+        .status(404)
+        .json({ message: "No bookmark found with this id!" });
+    }
+
+    // Check ownership before returning
+    if (bookmark.user.toString() !== req.user._id.toString()) {
+      return res
+        .status(403)
+        .json({ message: "User is not authorized to view this bookmark." });
+    }
+
+    res.json(bookmark);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
